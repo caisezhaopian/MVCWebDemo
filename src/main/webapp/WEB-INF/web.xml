@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+		 version="5.0"
+		 metadata-complete="true">
+	<display-name>demo</display-name>
+
+	<!-- springmvc前端控制器，spring MVC的核心就是DispatcherServlet，使用springMVC的第一步就是将下面的servlet放入web.xml
+  		<servlet><servlet-name>名字唯一，默认情况下，DispatchServlet会加载<servlet-name>-servlet.xml的文件，
+  		如下，就会加载springMVC.xml，在类路径下。。-->
+	<servlet>
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!--自定义加载spring-servlet.xml-->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/springMVC.xml</param-value>
+		</init-param>
+		<!--标记容器是否在启动的时候就加载这个servlet，当值为0或者大于0时，表示容器在应用启动时就加载，
+		当是一个负数时或者没有指定时，则指示容器在该servlet被选择时才加载。-->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- 设置dispatchservlet的匹配模式，通过把dispatchservlet映射到/，默认servlet会处理所有的请求，包括静态资源。-->
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<!-- “/*” 所有的请求全部交由对应的Servlet进行处理，-->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 字符集过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>
