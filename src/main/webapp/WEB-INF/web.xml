@@ -7,6 +7,25 @@
 		 metadata-complete="true">
 	<display-name>demo</display-name>
 
+	<!-- 字符集过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- springmvc前端控制器，spring MVC的核心就是DispatcherServlet，使用springMVC的第一步就是将下面的servlet放入web.xml
   		<servlet><servlet-name>名字唯一，默认情况下，DispatchServlet会加载<servlet-name>-servlet.xml的文件，
   		如下，就会加载springMVC.xml，在类路径下。。-->
@@ -29,23 +48,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- 字符集过滤器 -->
-	<filter>
-		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
 
-	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 
 </web-app>
