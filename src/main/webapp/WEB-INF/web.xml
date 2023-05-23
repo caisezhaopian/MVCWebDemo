@@ -41,7 +41,7 @@
 		当是一个负数时或者没有指定时，则指示容器在该servlet被选择时才加载。-->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<!-- 设置dispatchservlet的匹配模式，通过把dispatchservlet映射到/，默认servlet会处理所有的请求，包括静态资源。-->
+	<!-- 设置dispatch servlet 的匹配模式，通过把dispatch servlet 映射到/，默认servlet会处理所有的请求，包括静态资源。-->
 	<servlet-mapping>
 		<servlet-name>springMVC</servlet-name>
 		<!-- “/*” 所有的请求全部交由对应的Servlet进行处理，-->
